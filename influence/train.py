@@ -34,7 +34,12 @@ class Trainer:
         self.indist_test_data = indist_test_data
         self.ood_test_data = ood_test_data
 
+        # set random seed for reproducible initialization
+        if self.config.get("rdm_seed") is not None:
+            self._set_seed(self.config["rdm_seed"])
+
         self.g = t.Generator()
+        self.g.manual_seed(self.config.get("rdm_seed", 0))
         self.batch_size = self.config["batch_size"]
         self.loss_fn = t.nn.CrossEntropyLoss().cuda()
 

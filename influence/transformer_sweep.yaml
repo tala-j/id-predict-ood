@@ -1,0 +1,28 @@
+method: grid
+
+metric:
+  name: diff_max_min_ood
+  goal: maximize
+
+parameters:
+  batch_size:
+    values: [8, 32]
+  opt:
+    values: ["adam"]
+  lr:
+    values: [0.0003, 0.0001, 0.001]
+  wd:
+    values: [0]
+  # SPECIFIC TO TRANFORMERS
+  n_layer:
+    values: [3]
+  n_head:
+    values: [4]
+  n_embd:
+    values: [64]
+  embd_pdrop:
+    values: [0]
+  resid_pdrop:
+    values: [0]
+  attn_pdrop:
+    values: [0]

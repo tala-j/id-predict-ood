@@ -68,7 +68,6 @@ class CausalSelfAttention(nn.Module):
         # causal self-attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -> (B, nh, T, T)
         att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(k.size(-1)))
         
-        self.last_attn_weights_premask = (F.softmax(att, dim=-1)).detach().cpu()
         if any(self.ablate_heads):
             for i in range(self.n_head):
                 if self.ablate_heads[i]:
@@ -85,8 +84,6 @@ class CausalSelfAttention(nn.Module):
         # output projection
         y = self.resid_dropout(self.c_proj(y))
 
-        # Add this line to store attention weights
-        self.last_attn_weights = att.detach().cpu()
 
         return y
 

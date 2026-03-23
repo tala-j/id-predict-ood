@@ -79,7 +79,7 @@ def get_run_ids():
 
 
 def load_model(run_id):
-    ckpt = os.path.join(MODELS_DIR, f"run_{run_id}_final.pt")
+    ckpt = os.path.join(MODELS_DIR, f"{run_id}.pt")
     model = get_transformer(n_layer=3, n_head=4, n_embd=64,
                             embd_pdrop=0, resid_pdrop=0, attn_pdrop=0)
     sd = torch.load(ckpt, map_location="cpu", weights_only=True)
@@ -222,18 +222,26 @@ def run_sgld(run_id, train_inputs, train_seq_lens, train_targets,
 # -------------------------
 def compute_susceptibility(test_traces, train_traces):
     """
-    χ_{i,j} = -Cov[ℓ_test_i(w), ℓ_train_j(w)]
+    χ_{i,j} = -Cov[ℓ_test_i(w), ℓ_train_j(w) - L(w)]
+
+    where L(w) = mean over train samples of ℓ_k(w) at each draw.
+    Centering the train losses isolates per-sample influence from
+    the shared signal of overall training loss fluctuations.
 
     test_traces:  [num_draws, n_test]
     train_traces: [num_draws, n_train_eval]
 
     Returns: [n_test, n_train_eval]
     """
+    # Center train losses: subtract mean training loss at each draw
+    train_mean_per_draw = train_traces.mean(axis=1, keepdims=True)  # [num_draws, 1]
+    centered_train = train_traces - train_mean_per_draw              # [num_draws, n_train_eval]
+
     num_draws = test_traces.shape[0]
     test_mean = test_traces.mean(axis=0)
-    train_mean = train_traces.mean(axis=0)
-    cross = (test_traces.T @ train_traces) / num_draws
-    cov = cross - np.outer(test_mean, train_mean)
+    centered_train_mean = centered_train.mean(axis=0)
+    cross = (test_traces.T @ centered_train) / num_draws
+    cov = cross - np.outer(test_mean, centered_train_mean)
     return -cov
 
 

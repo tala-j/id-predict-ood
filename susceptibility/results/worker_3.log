@@ -1,0 +1,97 @@
+Worker 3/4: 6/12 models pending (6 lambdas)
+Loading training data (100K subset, seed=42)...
+Loading test data (1000 OOD)...
+Union of shared train indices: 2527 (from 6 lambdas)
+SGLD: eps=3e-06, gamma=500.0, nbeta=100.0, steps=2000, burn_in=500, sgld_bs=256
+
+[1/6] run 2e8fd53c
+    Draw 200/1500
+    Draw 400/1500
+    Draw 600/1500
+    Draw 800/1500
+    Draw 1000/1500
+    Draw 1200/1500
+    Draw 1400/1500
+  lambda=1e-10: saved [1000x1000]
+  lambda=1e-08: saved [1000x1000]
+  lambda=1e-06: saved [1000x1000]
+  lambda=1e-04: saved [1000x1000]
+  lambda=1e-02: saved [1000x1000]
+  lambda=1e+00: saved [1000x1000]
+
+[2/6] run 55557a85
+    Draw 200/1500
+    Draw 400/1500
+    Draw 600/1500
+    Draw 800/1500
+    Draw 1000/1500
+    Draw 1200/1500
+    Draw 1400/1500
+  lambda=1e-10: saved [1000x1000]
+  lambda=1e-08: saved [1000x1000]
+  lambda=1e-06: saved [1000x1000]
+  lambda=1e-04: saved [1000x1000]
+  lambda=1e-02: saved [1000x1000]
+  lambda=1e+00: saved [1000x1000]
+
+[3/6] run 7ef20fd6
+    Draw 200/1500
+    Draw 400/1500
+    Draw 600/1500
+    Draw 800/1500
+    Draw 1000/1500
+    Draw 1200/1500
+    Draw 1400/1500
+  lambda=1e-10: saved [1000x1000]
+  lambda=1e-08: saved [1000x1000]
+  lambda=1e-06: saved [1000x1000]
+  lambda=1e-04: saved [1000x1000]
+  lambda=1e-02: saved [1000x1000]
+  lambda=1e+00: saved [1000x1000]
+
+[4/6] run 91a28cba
+    Draw 200/1500
+    Draw 400/1500
+    Draw 600/1500
+    Draw 800/1500
+    Draw 1000/1500
+    Draw 1200/1500
+    Draw 1400/1500
+  lambda=1e-10: saved [1000x1000]
+  lambda=1e-08: saved [1000x1000]
+  lambda=1e-06: saved [1000x1000]
+  lambda=1e-04: saved [1000x1000]
+  lambda=1e-02: saved [1000x1000]
+  lambda=1e+00: saved [1000x1000]
+
+[5/6] run beb0b6aa
+    Draw 200/1500
+    Draw 400/1500
+    Draw 600/1500
+    Draw 800/1500
+    Draw 1000/1500
+    Draw 1200/1500
+    Draw 1400/1500
+  lambda=1e-10: saved [1000x1000]
+  lambda=1e-08: saved [1000x1000]
+  lambda=1e-06: saved [1000x1000]
+  lambda=1e-04: saved [1000x1000]
+  lambda=1e-02: saved [1000x1000]
+  lambda=1e+00: saved [1000x1000]
+
+[6/6] run f76c70bd
+    Draw 200/1500
+    Draw 400/1500
+    Draw 600/1500
+    Draw 800/1500
+    Draw 1000/1500
+    Draw 1200/1500
+    Draw 1400/1500
+  lambda=1e-10: saved [1000x1000]
+  lambda=1e-08: saved [1000x1000]
+  lambda=1e-06: saved [1000x1000]
+  lambda=1e-04: saved [1000x1000]
+  lambda=1e-02: saved [1000x1000]
+  lambda=1e+00: saved [1000x1000]
+
+Done.

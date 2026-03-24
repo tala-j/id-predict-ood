@@ -11,6 +11,7 @@ Usage:
 
 import os, argparse, glob, time
 import numpy as np
+import pandas as pd
 from scipy.stats import rankdata
 import matplotlib
 matplotlib.use("Agg")
@@ -19,6 +20,12 @@ import matplotlib.pyplot as plt
 _HERE = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(_HERE, "results")
 OUTPUT_DIR = os.path.join(_HERE, "cka_results")
+CSV_PATH = os.path.join(_HERE, "..", "influence", "logs", "1Mexp2_bin_40_05_Transformer.csv")
+
+
+def load_ood_acc():
+    df = pd.read_csv(CSV_PATH)
+    return dict(zip(df["run_id"], df["ood_acc"]))
 
 ALL_LAMBDAS = [1e-10, 1e-8, 1e-6, 1e-4, 1e-2, 1.0]
 
@@ -91,7 +98,7 @@ def plot_heatmap(cka_mat, names, title, path):
 # ------------------------------------------------------------------
 # Main
 # ------------------------------------------------------------------
-def run_cka_for_lambda(lam):
+def run_cka_for_lambda(lam, ood_acc):
     tag = lambda_tag(lam)
     files = sorted(glob.glob(os.path.join(RESULTS_DIR, f"*_susc_{tag}.npy")))
     if not files:
@@ -99,6 +106,12 @@ def run_cka_for_lambda(lam):
         return
 
     names = [os.path.basename(f).replace(f"_susc_{tag}.npy", "") for f in files]
+
+    # Sort by OOD accuracy (ascending so low→high left→right)
+    order = sorted(range(len(names)), key=lambda i: ood_acc.get(names[i], 0.0))
+    files = [files[i] for i in order]
+    names = [names[i] for i in order]
+
     n = len(names)
     print(f"\n{tag}: {n} matrices")
 
@@ -122,9 +135,12 @@ def run_cka_for_lambda(lam):
     print(f"  Rank CKA     — mean: {cka_r[mask].mean():.4f}, "
           f"std: {cka_r[mask].std():.4f}, min: {cka_r[mask].min():.4f}, max: {cka_r[mask].max():.4f}")
 
-    plot_heatmap(cka_z, names, f"Susceptibility CKA (Z-score) — {tag}",
+    # Labels: run_id (ood_acc)
+    labels = [f"{nm}\n({ood_acc.get(nm, 0):.3f})" for nm in names]
+
+    plot_heatmap(cka_z, labels, f"Susceptibility CKA (Z-score) — {tag}  [sorted by OOD acc]",
                  os.path.join(OUTPUT_DIR, f"susc_cka_zscore_{tag}.png"))
-    plot_heatmap(cka_r, names, f"Susceptibility CKA (Rank) — {tag}",
+    plot_heatmap(cka_r, labels, f"Susceptibility CKA (Rank) — {tag}  [sorted by OOD acc]",
                  os.path.join(OUTPUT_DIR, f"susc_cka_rank_{tag}.png"))
 
     np.savez(os.path.join(OUTPUT_DIR, f"susc_cka_{tag}.npz"),
@@ -137,10 +153,11 @@ def main():
     args = parser.parse_args()
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+    ood_acc = load_ood_acc()
 
     lambdas = [args.lambda_val] if args.lambda_val is not None else ALL_LAMBDAS
     for lam in lambdas:
-        run_cka_for_lambda(lam)
+        run_cka_for_lambda(lam, ood_acc)
 
     print("\nDone.")
 

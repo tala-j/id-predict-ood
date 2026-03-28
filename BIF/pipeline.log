@@ -1,0 +1,13 @@
+Fri Mar 27 04:59:40 UTC 2026 Phase 1 done (50/50 scores)
+Saved top-1000 indices → /root/id-predict-ood/BIF/shared_top1000_bif.npy
+  Score range of top-1000: 2.6182e-01 – 1.0685e+00
+  Score range overall:     6.0438e-03 – 1.0685e+00
+Fri Mar 27 04:59:41 UTC 2026 Phase 2 workers: 22360 22361
+Fri Mar 27 05:11:43 UTC 2026 Phase 2 done (50/50 matrices)
+Computing CKA for 50 BIF top-1000 matrices...
+  Z-score CKA — mean: 0.2814, std: 0.1335, min: 0.0447, max: 0.8570
+  Rank CKA    — mean: 0.3308, std: 0.1519, min: 0.0517, max: 0.7581
+  Saved /root/id-predict-ood/BIF/cka_results_top1000/bif_top1000_cka_zscore.png
+  Saved /root/id-predict-ood/BIF/cka_results_top1000/bif_top1000_cka_rank.png
+Done.
+Fri Mar 27 05:11:54 UTC 2026 All done.

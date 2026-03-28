@@ -1,0 +1,38 @@
+
+lambda1e-10: 50 matrices
+  Z-score CKA — mean: 0.3757, std: 0.1680, min: 0.0546, max: 0.8563
+  Rank CKA    — mean: 0.4838, std: 0.1911, min: 0.0397, max: 0.8746
+  Saved /root/id-predict-ood/BIF/cka_results/bif_cka_zscore_lambda1e-10.png
+  Saved /root/id-predict-ood/BIF/cka_results/bif_cka_rank_lambda1e-10.png
+
+lambda1e-8: 50 matrices
+  Z-score CKA — mean: 0.4042, std: 0.1675, min: 0.0717, max: 0.8787
+  Rank CKA    — mean: 0.5095, std: 0.1935, min: 0.0558, max: 0.9311
+  Saved /root/id-predict-ood/BIF/cka_results/bif_cka_zscore_lambda1e-8.png
+  Saved /root/id-predict-ood/BIF/cka_results/bif_cka_rank_lambda1e-8.png
+
+lambda1e-6: 50 matrices
+  Z-score CKA — mean: 0.4201, std: 0.1739, min: 0.0682, max: 0.9047
+  Rank CKA    — mean: 0.5258, std: 0.2073, min: 0.0421, max: 0.9488
+  Saved /root/id-predict-ood/BIF/cka_results/bif_cka_zscore_lambda1e-6.png
+  Saved /root/id-predict-ood/BIF/cka_results/bif_cka_rank_lambda1e-6.png
+
+lambda1e-4: 50 matrices
+  Z-score CKA — mean: 0.3922, std: 0.1687, min: 0.0608, max: 0.8785
+  Rank CKA    — mean: 0.4968, std: 0.1941, min: 0.0736, max: 0.9305
+  Saved /root/id-predict-ood/BIF/cka_results/bif_cka_zscore_lambda1e-4.png
+  Saved /root/id-predict-ood/BIF/cka_results/bif_cka_rank_lambda1e-4.png
+
+lambda1e-2: 50 matrices
+  Z-score CKA — mean: 0.3864, std: 0.1698, min: 0.0677, max: 0.8832
+  Rank CKA    — mean: 0.4930, std: 0.1959, min: 0.0704, max: 0.9350
+  Saved /root/id-predict-ood/BIF/cka_results/bif_cka_zscore_lambda1e-2.png
+  Saved /root/id-predict-ood/BIF/cka_results/bif_cka_rank_lambda1e-2.png
+
+lambda1e0: 50 matrices
+  Z-score CKA — mean: 0.3741, std: 0.1696, min: 0.0655, max: 0.8714
+  Rank CKA    — mean: 0.4745, std: 0.1920, min: 0.0725, max: 0.9276
+  Saved /root/id-predict-ood/BIF/cka_results/bif_cka_zscore_lambda1e0.png
+  Saved /root/id-predict-ood/BIF/cka_results/bif_cka_rank_lambda1e0.png
+
+Done.
